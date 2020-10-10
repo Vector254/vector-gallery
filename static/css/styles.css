@@ -1,0 +1,13 @@
+ul li{
+    display: inline;
+    padding: 10px;
+}
+
+.navbar{
+  background-color: rgb(224, 102, 214);
+  color: black;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+}
