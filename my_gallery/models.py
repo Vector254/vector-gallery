@@ -17,8 +17,9 @@ class Image(models.Model):
     def delete_image(self):
         Image.objects.filter(id = self.pk).delete() 
     
-    def update_image(self, **kwargs):
-        self.objects.filter(id = self.pk).update(**kwargs) 
+    @classmethod
+    def update_image(cls, id, value):
+        cls.objects.filter(id=id).update(image=value) 
 
     @classmethod
     def get_images(cls):
@@ -47,8 +48,8 @@ class Category(models.Model):
         return self.name
 
     @classmethod
-    def update_category(cls, id, value):
-        cls.objects.filter(id=id).update(image=value)
+    def update_category(cls, id, new_category):
+        cls.objects.filter(id=id).update(name=new_category)
 
     def save_category(self):
         self.save()
@@ -69,8 +70,8 @@ class Location(models.Model):
             return self.name
 
     @classmethod
-    def update_location(cls, id, value):
-        cls.objects.filter(id=id).update(image=value)
+    def update_location(cls, id, new_location):
+        cls.objects.filter(id=id).update(name=new_location)
 
     def save_location(self):
         self.save()

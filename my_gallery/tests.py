@@ -7,36 +7,40 @@ from .models import Image, Category, Location
 class ImageTestClass(TestCase):
 
     def setUp(self):
-        self.image = Image(name = 'chelsea', description = 'my favorite soccer club')
-        self.image.save_image()
+        self.location = Location(name='kenya')
+        self.location.save_location()
+
+        self.category = Category(name='cars')
+        self.category.save_category()
+
+        self.image_test = Image(id=1, name='ford', description='my favorite car', location=self.location,
+                                category=self.category)
+
+        
 
     def test_instance(self):
-        self.assertTrue(isinstance(self.image, Image))
+        self.assertTrue(isinstance(self.image_test, Image))
 
 
-    def test_save_method(self):
-        self.image.save_image()
+    def test_save_image(self):
+        self.image_test.save_image()
         images = Image.objects.all()
         self.assertTrue(len(images) > 0) 
 
 
-    def test_delete_method(self):
+    def test_delete_image(self):
         self.new_image = Image(name = 'ford', description = 'my favorite car')  
         self.new_image.save_image() 
         self.new_image.delete_image()
         images = Image.objects.all()
-        self.assertEqual(len(images), 1)
+        self.assertEqual(len(images), 0)
 
 
-    def test_update_method(self):
-        self.image = Image(name = 'ferrari', description = 'my second favorite car')
-        self.image.save_image()
-        self.image = Image(name = 'ferrari', description = 'my second favorite car')        
-        self.image.update_image(name = 'ferrari')
-        self.image.save_image()
-        images = Image.objects.filter(name = 'mustang')
-        pics = Image.objects.all()      
-        self.assertEqual(len(images), 1)
+    def test_update_image(self):
+        self.image_test.save_image()
+        self.image_test.update_image(self.image_test.id, 'photos/test.jpg')
+        changed_img = Image.objects.filter(image='photos/test.jpg')
+        self.assertTrue(len(changed_img) > 0)
 
     def tearDown(self):
         Image.objects.all().delete()
@@ -45,6 +49,9 @@ class LocationTestClass(TestCase):
     def setUp(self):
         self.location = Location(name='kenya')
         self.location.save_location()
+
+    def tearDown(self):
+        Location.objects.all().delete()
 
     def test_instance(self):
         self.assertTrue(isinstance(self.location, Location))
@@ -56,10 +63,10 @@ class LocationTestClass(TestCase):
 
    
     def test_update_location(self):
-        new_location = 'england'
-        self.location.update_location(self.location.id, new_location)
-        changed_location = Location.objects.filter(name='england')
-        self.assertTrue(len(changed_location) > 0)
+        new_location_name = 'Paris'
+        self.location.update_location(self.location.id,new_location_name)
+        changed_location = Location.objects.filter(name='Paris')
+        self.assertTrue(len(changed_location)>0)
 
     def test_delete_location(self):
         self.location.delete_location()

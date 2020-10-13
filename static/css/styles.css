@@ -1,14 +1,10 @@
 body{
   background-color: #0d0d0e;
-}
-.navbar{
-  background-color: rgb(177, 150, 0);
-  color: black;
-  top: 0;
-  width: 100%;
-  margin-bottom: 50px;
   
+  padding-top: 55px;
+
 }
+
 
 
 .img{
