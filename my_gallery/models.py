@@ -23,7 +23,12 @@ class Image(models.Model):
     @classmethod
     def get_images(cls):
         images = cls.objects.all()
-        return images   
+        return images  
+
+    @classmethod
+    def search_by_title(cls,search_term):
+        images = cls.objects.filter(name__icontains=search_term)
+        return images 
 
 class Category(models.Model):
     name = models.CharField(max_length=15,) 	    

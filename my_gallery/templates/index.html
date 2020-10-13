@@ -7,11 +7,20 @@
 <h1 class="text-center">Welcome to vector gallery</h1>
 
 
-<div class="row">
-    {% for image in images %}
-    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 columns"></div>
 
-    <img src="{{image.image.url}}" alt="image" class="img-fluid myimage">
+    {% for image in images %}
+    <div class="row">
+        <!-- displaying News articles -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <h2 class="text-center"> {{ image.name }} </h2>
+        </div>
+    
+        <!--Display news Article images  -->
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <img src="{{image.image.url}}" class="img-responsive" alt="Image">
+        </div>
+    
+      </div>
     {% endfor %}
 
 {% endblock %}
