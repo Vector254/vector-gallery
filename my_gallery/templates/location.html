@@ -1,10 +1,15 @@
 {%extends 'base.html'%} 
-
-{% block content %}
+{%block content%}
 <style>
+
+    body{
+        background-color: #0d0d0e;
+    }
     .img{
         height: 200px;
-        width: 250px;
+        width: 100%;
+        box-shadow: 0 green;
+        border-bottom:5px, palevioletred;
     }
     
     .hovereffect {
@@ -47,7 +52,7 @@
       -webkit-transition: all 0.35s;
       transition: all 0.35s;
       margin: 10px;
-      border-radius: 20px;
+      
     }
     
     .hovereffect:hover img {
@@ -90,63 +95,61 @@
       transform: translate3d(0,0,0);
     }
     </style>
-    
-
 <div class="container-fluid">
 
-  <div class="row">
-    {% if images%}
-      <h2>Found {{ images|length }} of searched term {{message}}</h2>
-    {% else %}
-      <h2> Found 0 images for the search term {{message}}</h2>
-    {% endif %}
-
+    <div class="row"> 
+      {% if images%}
+        <h2>Found {{ images|length }} from {{message}}</h2>
+      {% else %}
+        <h2> Found 0 images from the location {{message}}</h2>
+      {% endif %}
+  
+    </div>
+  
+    <div class="row">
+      {% for image in images %}
+      <!-- displaying News articles -->
+      <div class="col-lg-4 col-md-3 col-sm-4 col-xs-12 ">
+          
+          <div class="hovereffect">
+              
+              <img class="img" src="{{image.image.url}}"  alt="Image">
+              <div class="overlay">
+                  <h2>{{image.name}}</h2>
+                  <button class="btn btn-primary" data-toggle="modal" data-target="#{{image.id}}">in-detail view</button>
+              </div>
+              
+          
+          </div>
+  
+      </div>
+      <!-- Button trigger modal -->
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="{{image.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{image.name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="{{image.image.url}}" alt="" style="width: 100%;">
+      </div>
+      <div class="modal-footer">
+          <p>{{image.description}}</p>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  
+      </div>
+    </div>
   </div>
-
-  <div class="row">
-    {% for image in images %}
-    <!-- displaying News articles -->
-    <div class="col-lg-4 col-md-3 col-sm-4 col-xs-12 ">
-        
-        <div class="hovereffect">
-            
-            <img class="img" src="{{image.image.url}}"  alt="Image">
-            <div class="overlay">
-                <h2>{{image.name}}</h2>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#{{image.id}}">in-detail view</button>
-            </div>
-            
-        
-        </div>
-
-    </div>
-    <!-- Button trigger modal -->
-
-
-<!-- Modal -->
-<div class="modal fade" id="{{image.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">{{image.name}}</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <img src="{{image.image.url}}" alt="" style="width: 100%;">
-    </div>
-    <div class="modal-footer">
-        <p>{{image.description}}</p>
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-    </div>
   </div>
-</div>
-</div>
-    
-    {% endfor %}
+      
+      {% endfor %}
+    </div>
+  
   </div>
-
-</div>
-{% endblock %}
+  {% endblock %}

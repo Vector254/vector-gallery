@@ -6,7 +6,18 @@
 
 {% block content %}
 <style>
-    .hovereffect {
+
+body{
+    background-color: #0d0d0e;
+}
+.img{
+    height: 200px;
+    width: 100%;
+    box-shadow: 0 green;
+    border-bottom:5px, palevioletred;
+}
+
+.hovereffect {
   width: 100%;
   height: 100%;
   float: left;
@@ -45,6 +56,8 @@
   position: relative;
   -webkit-transition: all 0.35s;
   transition: all 0.35s;
+  margin: 10px;
+  
 }
 
 .hovereffect:hover img {
@@ -94,30 +107,46 @@
 <div class="container-fluid">
 <h1 class="text-center">Welcome to vector gallery</h1>
 
+<div class="dropdown show">
+    <a class="btn btn-warning dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      filter by locations
+    </a>
+    
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    {% for location in locations%}
+      <a class="dropdown-item" href="/location/{{location.name}}">{{location.name}}</a>
+      {% endfor %}
+    </div>
+    
+  </div>
+
 
 
     
     <div class="row">
         {% for image in images %}
+
+        
         <!-- displaying News articles -->
-        <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 ">
-            <button  data-toggle="modal" data-target="#exampleModal">
+        <div class="col-lg-4 col-md-3 col-sm-4 col-xs-12 ">
+            
             <div class="hovereffect">
                 
-                <img class="img-responsive" src="{{image.image.url}}"  alt="Image">
+                <img class="img" src="{{image.image.url}}"  alt="Image">
                 <div class="overlay">
                     <h2>{{image.name}}</h2>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#{{image.id}}">in-detail view</button>
                 </div>
                 
             
             </div>
-        </button>
+
         </div>
         <!-- Button trigger modal -->
 
   
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="{{image.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
