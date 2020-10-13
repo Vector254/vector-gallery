@@ -21,7 +21,7 @@ click [here](https://vector-gallery.herokuapp.com/)  to visit the live site
  ```bash 
  pip install -r requirements.txt 
 ```
-##### Install and activate Virtual  
+##### Install and activate Virtual environment
  ```bash 
  virtualenv virtual && source virtual/bin/activate  
 ```  
@@ -31,7 +31,7 @@ click [here](https://vector-gallery.herokuapp.com/)  to visit the live site
  ```bash 
  python manage.py makemigrations 
  ``` 
- Now Migrate  
+ Then Migrate  
  ```bash 
  python manage.py migrate 
 ```
@@ -39,10 +39,7 @@ click [here](https://vector-gallery.herokuapp.com/)  to visit the live site
  ```bash 
  python manage.py runserver 
 ``` 
-##### Running the application  
- ```bash 
- python manage.py server 
-```
+
 ##### Testing the application  
  ```bash 
  python manage.py test 
@@ -61,7 +58,7 @@ click [here](https://vector-gallery.herokuapp.com/)  to visit the live site
 * None, reach out below incase of any.
   
 ## Contact Information   
-In case of any question or complaints, please email me at [ochrist7@gmail.com]  
+In case of any question or complaints, please [email](ochrist7@gmail.com) me
   
 ## License 
 
