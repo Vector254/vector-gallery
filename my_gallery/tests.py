@@ -54,11 +54,7 @@ class LocationTestClass(TestCase):
         locations = Location.get_locations()
         self.assertTrue(len(locations) > 0)
 
-    def test_get_locations(self):
-        self.location.save_location()
-        locations = Location.get_locations()
-        self.assertTrue(len(locations) > 1)
-
+   
     def test_update_location(self):
         new_location = 'england'
         self.location.update_location(self.location.id, new_location)
@@ -83,6 +79,12 @@ class CategoryTestClass(TestCase):
         self.category.save_category()
         categories = Category.objects.all()
         self.assertTrue(len(categories) > 0)
+    
+    def test_update_category(self):
+        new_category = 'soccer'
+        self.category.update_category(self.category.id, new_category)
+        changed_category = Category.objects.filter(name='soccer')
+        self.assertTrue(len(changed_category) > 0)   
 
     def test_delete_category(self):
         self.category.delete_category()
