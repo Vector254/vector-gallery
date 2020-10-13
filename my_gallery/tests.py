@@ -31,8 +31,8 @@ class ImageTestClass(TestCase):
     def test_update_method(self):
         self.image = Image(name = 'ferrari', description = 'my second favorite car')
         self.image.save_image()
-        self.image = Image(name = 'mustang', description = 'my third favorite car')        
-        self.image.update_image(name = 'mustang')
+        self.image = Image(name = 'ferrari', description = 'my second favorite car')        
+        self.image.update_image(name = 'ferrari')
         self.image.save_image()
         images = Image.objects.filter(name = 'mustang')
         pics = Image.objects.all()      
