@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#">Vector Gallery</a>
-        <a class="navbar-brand text-center" href="{% url 'welcome' %}">Home</a>
+        <button class="btn btn-danger btn-sm"><a class="navbar-brand text-center" href="{% url 'welcome' %}">Home</a></button>
       
       </div>
       
@@ -16,7 +16,7 @@
         <form class="navbar-form" role="search" action="{% url 'search_results' %}">
 
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search image category" name="image">
+            <input type="text" class="form-control" placeholder="Search by category" name="image">
             <div class="input-group-btn">
               <button class="btn data" type="submit"><i class="glyphicon glyphicon-search"></i></button>
             </div>
