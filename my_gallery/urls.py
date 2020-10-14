@@ -5,10 +5,10 @@ from django.conf.urls.static import static
 from django.views.static import serve
 
 
-urlpatterns=[
+urlpatterns=patterns('',
     url('^$',views.welcome,name = 'welcome'),
     url(r'^search/', views.search_results, name='search_results'),
     url(r'^location/(?P<location>\w+)/', views.image_location, name='location'),
-]
+) + staticfiles_urlpatterns()
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT),
