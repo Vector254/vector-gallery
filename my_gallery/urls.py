@@ -3,6 +3,7 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.static import serve
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
 urlpatterns=patterns('',
