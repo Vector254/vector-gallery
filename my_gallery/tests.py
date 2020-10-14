@@ -1,4 +1,6 @@
 from django.test import TestCase
+from django.urls import reverse, resolve
+from .views import welcome, search_results, image_location
 
 # Create your tests here.
 from .models import Image, Category, Location
@@ -97,4 +99,26 @@ class CategoryTestClass(TestCase):
         self.category.delete_category()
         category = Category.objects.all()
         self.assertTrue(len(category) == 0)
+
+class IndexPageTest(TestCase):
+    def test_welcome_view_status_code(self):
+        url = reverse('welcome')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+    def test_index_url_resolves_welcome_view(self):
+        view = resolve('/')
+        self.assertEquals(view.func, welcome)
+        
+class SearchPageTest(TestCase):
+    def test_search_view_status_code(self):
+        url = reverse('search_results')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+    def test_search_url_resolves_search_view(self):
+        view = resolve('/search/')
+        self.assertEquals(view.func, search_results)
+
+
         
